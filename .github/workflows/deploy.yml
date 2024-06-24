@@ -21,15 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Updated to use Node.js 20
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Updated to use Node.js 20
+          node-version: '20'
 
       - name: Cache Node modules
-        uses: actions/cache@v3  # Updated to use Node.js 20
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -44,7 +44,7 @@ jobs:
 
       - name: Run scripts
         run: |
-          for script in script/*; do
+          for script in script/*.js; do
             node "$script"
           done
 
@@ -53,15 +53,15 @@ jobs:
     needs: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Updated to use Node.js 20
+        uses: actions/checkout@v4 
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Updated to use Node.js 20
+          node-version: '20'
 
       - name: Cache Node modules
-        uses: actions/cache@v3  # Updated to use Node.js 20
+        uses: actions/cache@v3 
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -91,7 +91,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Updated to use Node.js 20
+        uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
         run: |
