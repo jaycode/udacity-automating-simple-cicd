@@ -110,5 +110,4 @@ jobs:
           url="https://<URL>"
           gh issue create --title "$today - Deployment: $outcome" --body "URL: $url"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use the personal access token
