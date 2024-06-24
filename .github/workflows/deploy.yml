@@ -70,7 +70,10 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          enablement: true  # Enable GitHub Pages
+          
       - name: Set PATH_PREFIX
         run: echo "PATH_PREFIX=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
 
