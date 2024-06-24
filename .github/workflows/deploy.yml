@@ -73,7 +73,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           enablement: true  # Enable GitHub Pages
-          
+
       - name: Set PATH_PREFIX
         run: echo "PATH_PREFIX=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
 
@@ -81,7 +81,7 @@ jobs:
         run: npm ci
 
       - name: Build static pages
-        run: npm run build
+        run: npm run eleventy:prod
 
       - name: Upload site content
         uses: actions/upload-artifact@v3
