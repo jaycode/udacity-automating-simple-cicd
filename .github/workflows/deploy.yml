@@ -98,14 +98,14 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          echo "Deploying to GitHub Pages..."
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git checkout --orphan gh-pages
-          git reset
+          git init
+          git remote add origin https://github.com/${{ github.repository }}
+          git checkout -b gh-pages
           git add -A
           git commit -m "Deploy to GitHub Pages"
-          git push -f origin gh-pages
+          git push -f https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }} gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
