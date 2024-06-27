@@ -119,7 +119,7 @@ jobs:
           git commit -m "Deploy to GitHub Pages"
           git push -f https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }} gh-pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       - name: Report Deployment Status
         run: |
