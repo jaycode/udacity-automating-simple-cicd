@@ -106,18 +106,24 @@ jobs:
             git init
             git remote add origin https://github.com/${{ github.repository }}
           fi
+          git fetch origin
           git checkout -b gh-pages
+          cp -r _site/* .
           git add -A
           git commit -m "Deploy to GitHub Pages"
           git push -f https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }} gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create deployment issue
+      - name: Report Deployment Status
         run: |
           today=$(date +'%Y-%m-%d')
-          outcome="succeeded"
           url="https://${{ github.actor }}.github.io/${{ github.event.repository.name }}/"
-          gh issue create --title "$today - Deployment: $outcome" --body "URL: $url"
+          if [ $? -eq 0 ]; then
+            status="succeeded"
+          else
+            status="failed"
+          fi
+          gh issue create --title "$today - Deployment: $status" --body "URL: $url"
         env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use the personal access token
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
