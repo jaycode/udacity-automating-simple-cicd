@@ -96,6 +96,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Download built site
+        uses: actions/download-artifact@v3
+        with:
+          name: site
+          path: _site
+          
       - name: Deploy to GitHub Pages
         run: |
           git config --global user.name "github-actions"
