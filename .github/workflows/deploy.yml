@@ -100,8 +100,12 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git init
-          git remote add origin https://github.com/${{ github.repository }}
+          if [ -d ".git" ]; then
+            git remote set-url origin https://github.com/${{ github.repository }}
+          else
+            git init
+            git remote add origin https://github.com/${{ github.repository }}
+          fi
           git checkout -b gh-pages
           git add -A
           git commit -m "Deploy to GitHub Pages"
