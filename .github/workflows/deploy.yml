@@ -90,7 +90,7 @@ jobs:
         run: npm run eleventy:prod
 
       - name: Upload site content
-        uses: actions/upload-page-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: site
           path: _site
